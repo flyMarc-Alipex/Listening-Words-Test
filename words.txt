@@ -1,0 +1,14 @@
+# WordCard 词表 — 释义+例句版示例
+# 格式:英文 <|> 释义①(中文 + 英文释义) <|> 例句① <|> 释义② <|> 例句② …
+# 每个义项跟一条自己的例句,数量一一对应。空格翻面,← → 切换,R 随机。
+
+example | ① 例子、示例 (example, instance) | For example, many people now work from home. | ② 榜样 (role model) | She set a good example for the team.
+practice | ① 练习、实践 (exercise, training) | Regular practice is the key to improving your English. | ② 惯例、诊所、事务 (custom, medical practice) | It is normal practice to send a written follow-up.
+memorize | 记忆、记住 (commit to memory) | I need to memorize these words before the test.
+review | ① 复习、回顾 (revise, go over) | Let's review what we learned last week. | ② 评论、审查 (evaluation, inspection) | The film received good reviews.
+recall | ① 回想、回忆 (remember, call to mind) | I can't recall her phone number. | ② 召回 (withdraw a product) | The company recalled thousands of cars last month.
+fluent | 流利的、流畅的 (smooth; able to speak a language easily) | She is fluent in three languages.
+vocabulary | 词汇、词汇量 (the words a person knows) | Reading widely builds your vocabulary.
+pronounce | 发音、读作 (say or sound out a word) | How do you pronounce this word?
+sentence | ① 句子 (a group of words forming a statement) | Write one sentence with each new word. | ② 判刑 (prison term) | He received a three-year prison sentence.
+translate | 翻译 (convert from one language to another) | I used an app to translate the letter.
