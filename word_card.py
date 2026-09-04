@@ -6,9 +6,10 @@ WordCard — 悬浮单词助记卡 (tkinter, 离线, 跨平台)
 用法:
     python3 word_card.py
 
-词表: 自动扫描同目录下的所有 .txt 词表文件(words.txt、day1-words.txt 等),
-    右键菜单「词表」切换。每行一条:英文单词 <Tab> 或 <|> 或 <两个空格> 释义。
-已会的词按词表分别记录(如 learned.txt、learned-day1-words.txt),右键菜单可「重置已会记录」。
+目录结构:
+    wordlists/  词表文件(words.txt、day1-words.txt 等),自动扫描,右键菜单「词表」切换。
+    data/       已会记录(learned*.txt)、统计(stats*.txt)、上次使用的词表(last_list.txt)。
+    每行一条:英文单词 <Tab> 或 <|> 或 <两个空格> 释义(多义词为 释义①|例句①|释义②|例句②…)。
 
 快捷键: 空格=翻面  ←=上一个  →=下一个  R=随机  S=记正确(只读模式)
 底部滑块切换「读写 / 听写」:听写模式播放语音、输入拼写,拼对记正确、拼错/超时记错误。
@@ -25,9 +26,13 @@ from pathlib import Path
 import tkinter as tk
 
 APP_DIR = Path(__file__).resolve().parent
-WORD_FILE = APP_DIR / "words.txt"
-LEARNED_FILE = APP_DIR / "learned.txt"
-LAST_FILE = APP_DIR / "last_list.txt"
+WORDS_DIR = APP_DIR / "wordlists"   # 词表文件
+DATA_DIR = APP_DIR / "data"         # 已会记录/统计/上次词表 等运行数据
+WORDS_DIR.mkdir(parents=True, exist_ok=True)
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+WORD_FILE = WORDS_DIR / "words.txt"
+LEARNED_FILE = DATA_DIR / "learned.txt"
+LAST_FILE = DATA_DIR / "last_list.txt"
 
 # 配色(深色)
 BG = "#1e1e24"
@@ -83,10 +88,10 @@ def load_words(path=WORD_FILE):
 
 
 def learned_path_for(word_file):
-    # words.txt 沿用旧的 learned.txt;其余词表各自的已会记录为 learned-<词表名>.txt
+    # 已会记录统一存 data/;words.txt 对应 learned.txt,其余词表为 learned-<词表名>.txt
     if word_file.stem == "words":
         return LEARNED_FILE
-    return APP_DIR / f"learned-{word_file.stem}.txt"
+    return DATA_DIR / f"learned-{word_file.stem}.txt"
 
 
 def load_learned(path):
@@ -100,10 +105,10 @@ def save_learned(learned, path):
 
 
 def stats_path_for(word_file):
-    # 统计文件与词表一一对应;words.txt 的统计为 stats.txt
+    # 统计文件统一存 data/,与词表一一对应;words.txt 的统计为 stats.txt
     if word_file.stem == "words":
-        return APP_DIR / "stats.txt"
-    return APP_DIR / f"stats-{word_file.stem}.txt"
+        return DATA_DIR / "stats.txt"
+    return DATA_DIR / f"stats-{word_file.stem}.txt"
 
 
 def load_stats(path):
@@ -166,9 +171,9 @@ def _apply_learned_many(word_file, words, add=True):
 
 
 def discover_lists():
-    """扫描目录内所有 txt 词表文件(排除 learned* 的已会记录)。"""
+    """扫描 wordlists/ 目录内所有 txt 词表文件(排除 learned*/stats* 等数据文件)。"""
     found = []
-    for p in sorted(APP_DIR.glob("*.txt")):
+    for p in sorted(WORDS_DIR.glob("*.txt")):
         if p.name.startswith("learned") or p.name.startswith("stats"):
             continue
         if p.name == "last_list.txt":
@@ -233,6 +238,10 @@ class WordCard:
         self.audio_proc = None  # 当前正在播放的 say 进程
         self._audio_seq = 0     # 语音代次,丢弃过期语音的回调
         self._dict_word = None  # 当前正在听写的单词(避免同一词重复播放)
+        self.auto_id = None     # 拼对后自动跳转定时器
+        self.side = None        # 右侧释义侧边栏
+        self.side_word = None
+        self.side_meaning = None
         self._load_list()
 
         self.root.geometry("430x255")
@@ -267,6 +276,7 @@ class WordCard:
     def _load_list(self):
         self._cancel_timer()
         self._stop_audio()
+        self._hide_side()
         self._dict_word = None
         self.word_file = self.lists[self.list_index]
         self.learned_file = learned_path_for(self.word_file)
@@ -321,14 +331,14 @@ class WordCard:
                               bg=CARD, fg=TEXT, insertbackground=TEXT,
                               highlightthickness=1, highlightbackground=LINE)
         self.entry.pack(fill="x", padx=14, ipady=4)
-        self.entry.bind("<Return>", lambda e: self.submit_dict())
+        self.entry.bind("<Return>", lambda e: self._on_enter() or "break")
         self.timer_lbl = tk.Label(self.dict_box, text="", font=("Helvetica", 10),
                                   bg=CARD, fg=ACCENT)
         self.timer_lbl.pack(pady=(6, 2))
         dfb = tk.Frame(self.dict_box, bg=CARD)
         dfb.pack(pady=(0, 10))
         self._make_button(dfb, "重复", self.repeat_dict)
-        self._make_button(dfb, "提交", self.submit_dict)
+        self._make_button(dfb, "提交", self._on_enter)
         self.pause_btn = self._make_button(dfb, "暂停", self.toggle_pause)
         self._make_button(dfb, "退出", lambda: self._set_mode("read"))
 
@@ -369,7 +379,7 @@ class WordCard:
             import traceback
             err = traceback.format_exc()
             try:
-                log = APP_DIR / "wordcard-error.log"
+                log = DATA_DIR / "wordcard-error.log"
                 log.write_text(err, encoding="utf-8")
             except Exception:
                 pass
@@ -418,6 +428,8 @@ class WordCard:
         self.root.bind("<Left>", lambda e: self.prev() if self.mode != "dict" else None)
         self.root.bind("r", lambda e: self.random_word() if self.mode != "dict" else None)
         self.root.bind("s", lambda e: self.learn() if self.mode != "dict" else None)
+        # 听写模式下主窗口内任意位置回车都算"提交/翻词"
+        self.root.bind("<Return>", lambda e: self._on_enter() if self.mode == "dict" else None)
 
     # ---------- 逻辑 ----------
     def current_word(self):
@@ -426,6 +438,7 @@ class WordCard:
     def show(self):
         total = len(self.words)
         if not self.active:
+            self._hide_side()
             self.example_lbl.config(text="")
             if self.mode == "dict":
                 self.entry.delete(0, "end")
@@ -534,6 +547,7 @@ class WordCard:
         self.mode = mode
         self._cancel_timer()
         self._stop_audio()
+        self._hide_side()
         self._pending = None
         if mode == "dict":
             self.word_lbl.pack_forget()
@@ -559,6 +573,7 @@ class WordCard:
         fresh = (self._dict_word != w)
         self._dict_word = w
         if fresh:
+            self._hide_side()
             self.entry.delete(0, "end")
             self.entry.focus_set()
             try:
@@ -664,11 +679,14 @@ class WordCard:
             self.timer_id = None
 
     def submit_dict(self, timeout=False):
-        """听写提交:拼对记正确+1,拼错记错误+1,短暂反馈后进入下一个词。
-        超时(timeout=True)只是强制按当前输入提交:输入正确仍记正确,输入错误才记错误。"""
+        """听写提交:拼对记正确+1,拼错记错误+1,并在右侧侧边栏显示该词释义。
+        超时(timeout=True)只是强制按当前输入提交:输入正确仍记正确,输入错误才记错误。
+        无论拼对还是拼错,主窗口都停在当前词、侧栏持续显示释义,
+        只有按回车/点「提交」才进入下一个词。"""
         if not self.active or self._pending:
             return
-        w = self.current_word()[0]
+        w, senses = self.current_word()
+        meaning = "；".join(m for m, _ in senses)
         guess = self.entry.get().strip().lower()
         ok = (guess == w.strip().lower())
         if ok:
@@ -679,12 +697,29 @@ class WordCard:
             msg = f"✗ 拼写错误,正确:{w}"
         self._mark(w, ok)
         self._cancel_timer()
+        self._cancel_auto()
         self.timer_lbl.config(text="")
         self.dict_hint.config(text=msg)
+        self._show_side(w, meaning)
         self._pending = w
-        self.root.after(1300, self._after_feedback)
+
+    def _on_enter(self):
+        """输入框回车/点「提交」:正在作答时提交;已拼完(反馈中)时立即进入下一个词。"""
+        if self._pending is not None:
+            self._after_feedback()
+        else:
+            self.submit_dict()
+
+    def _cancel_auto(self):
+        if self.auto_id is not None:
+            try:
+                self.root.after_cancel(self.auto_id)
+            except Exception:
+                pass
+            self.auto_id = None
 
     def _after_feedback(self):
+        self._cancel_auto()
         if self.mode != "dict" or not self.active or self._pending is None:
             return
         if self.current_word()[0] != self._pending:
@@ -693,6 +728,65 @@ class WordCard:
         w = self._pending
         self._pending = None
         self._advance_after(w)
+
+    # ---------- 释义侧边栏 ----------
+    def _ensure_side(self):
+        try:
+            alive = self.side is not None and self.side.winfo_exists()
+        except tk.TclError:
+            alive = False
+        if not alive:
+            self.side = tk.Toplevel(self.root)
+            self.side.title("释义")
+            self.side.configure(bg=CARD)
+            self.side.resizable(False, False)
+            # 焦点若落在副窗上,回车同样可"提交/翻词"
+            self.side.bind("<Return>", lambda e: self._on_enter() or "break")
+            self.side_word = tk.Label(self.side, text="", font=("Helvetica", 16, "bold"),
+                                      bg=CARD, fg=TEXT, wraplength=180)
+            self.side_word.pack(pady=(14, 4), padx=12)
+            self.side_meaning = tk.Label(self.side, text="", font=("Helvetica", 12),
+                                         bg=CARD, fg=ACCENT, wraplength=180)
+            self.side_meaning.pack(pady=(0, 14), padx=12)
+        return self.side
+
+    def _show_side(self, w, m):
+        try:
+            panel = self._ensure_side()
+            self.side_word.config(text=w)
+            self.side_meaning.config(text=m or "(原文无提示)")
+            panel.update_idletasks()
+            px = self.root.winfo_rootx() + self.root.winfo_width() + 10
+            py = self.root.winfo_rooty()
+            sw = self.root.winfo_screenwidth()
+            if px > sw - 220:
+                px = max(0, self.root.winfo_rootx() - 220)
+            panel.geometry(f"+{px}+{py}")
+            panel.deiconify()
+            panel.lift()
+            try:
+                panel.attributes("-topmost", True)
+            except tk.TclError:
+                pass
+        except tk.TclError:
+            pass
+        self._refocus_entry()
+
+    def _refocus_entry(self):
+        """把键盘焦点还给听写输入框(副窗弹出抢走后,保证回车仍作用于主窗口)。"""
+        try:
+            self.entry.focus_set()
+            self.entry.focus_force()
+        except tk.TclError:
+            pass
+
+    def _hide_side(self):
+        if self.side is not None:
+            try:
+                if self.side.winfo_exists():
+                    self.side.withdraw()
+            except tk.TclError:
+                pass
 
     def repeat_dict(self):
         if not self.active or self._pending:
@@ -950,7 +1044,7 @@ def main():
         import traceback
         import tkinter.messagebox as mb
         err = traceback.format_exc()
-        log = APP_DIR / "wordcard-error.log"
+        log = DATA_DIR / "wordcard-error.log"
         try:
             log.write_text(err, encoding="utf-8")
         except Exception:

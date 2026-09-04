@@ -1,0 +1,107 @@
+# Day P4-02 (day2) 每日答案词表 — 释义+例句版
+# 格式:英文 <|> 释义①(中文 + 英文释义) <|> 例句① <|> 释义② <|> 例句② …
+
+relationship | ① 关系 (connection between people or things) | The book looks at the relationship between diet and health. | ② 感情关系 (romantic bond) | They ended their relationship after five years.
+rock | ① 岩石 (large stone) | The road is cut through solid rock. | ② 摇滚乐 (rock music) | He plays rock music in a band.
+plastic | 塑料 (synthetic material) | We should reduce our use of plastic bags.
+city | 城市 (large town) | The city has a population of over two million.
+competition | ① 竞争 (rivalry) | Competition between the two firms is fierce. | ② 比赛 (contest) | She won first prize in the swimming competition.
+distance | ① 距离 (space between two points) | The school is within walking distance of my home. | ② 远处 (a far point) | We could see the mountains in the distance.
+electricity | 电、电力 (power carried by wires) | The storm cut off electricity for several hours.
+stone | 石头 (hard material from the ground) | The bridge is built of huge grey stones.
+plant | ① 植物 (a living organism that grows) | Some plants need very little water. | ② 工厂 (factory) | The car plant employs thousands of workers.
+confidence | 信心、自信 (belief in yourself) | Practice will build your confidence in speaking.
+direction | ① 方向 (way, course) | He pointed in the direction of the station. | ② 指导、管理 (guidance, management) | The project is under the direction of the manager.
+furniture | 家具 (household items) | The flat comes with basic furniture.
+decoration | ① 装饰 (making something attractive) | The room needs some decoration for the party. | ② 装饰品 (decorative items) | We hung decorations on the tree.
+equipment | 设备、器材 (tools needed for a task) | The laboratory is full of expensive equipment.
+government | 政府 (ruling body of a country) | The government announced new housing policies.
+cooperation | 合作、协作 (working together) | The project needs cooperation between several universities.
+movement | ① 运动、活动 (organized campaign) | The environmental movement is growing worldwide. | ② 移动、动作 (motion) | A slight movement of the door caught his eye.
+picture | ① 图片、照片 (image) | She showed me a picture of her family. | ② 画面、景象 (scene) | The lake at dawn was a beautiful picture.
+exhibition | 展览、展览会 (public show) | The art exhibition opens on Friday.
+emotion | 情绪、情感 (strong feeling) | Music can express emotions that words cannot.
+action | ① 行动、行为 (something done) | The government promised strong action on pollution. | ② 情节 (events in a film or story) | The movie is full of action and adventure.
+concentration | ① 专注、集中 (close attention) | Noise makes it hard to keep concentration. | ② 浓度 (strength of a substance) | The concentration of salt in the water is too high.
+liquid | 液体 (a fluid substance) | Water is a liquid at room temperature.
+mathematics | 数学 (the science of numbers) | He is good at mathematics and physics.
+mineral | ① 矿物质 (natural substance in the ground) | The water is rich in minerals. | ② 矿物的 (relating to minerals) | Mineral deposits lie deep underground.
+gas | ① 气体 (a substance like air) | Methane is a gas produced by cows. | ② 汽油 (petrol) | We stopped to fill up with gas on the way.
+activity | ① 活动 (things people do) | Outdoor activities are popular with local families. | ② 活跃 (liveliness) | There is a lot of activity in the port at dawn.
+advertisement | 广告 (promotional message) | The advertisement appeared on every bus.
+blood | 血、血液 (red liquid in the body) | He lost a lot of blood in the accident.
+brick | 砖 (building block) | The old houses were built of red brick.
+discussion | 讨论、商讨 (talking about a topic) | The class had a lively discussion about climate change.
+documentation | 文件、文献资料 (official records) | Please keep all the documentation for the record.
+election | 选举 (voting to choose someone) | The election takes place in November.
+entertainment | 娱乐 (things that amuse people) | The cinema is a popular form of entertainment.
+entrance | ① 入口 (a way in) | Wait for me at the main entrance. | ② 入学、进入 (entering a place or school) | She passed the entrance exam for the university.
+evaporation | 蒸发 (turning into vapor) | Evaporation removes water from the soil quickly.
+flavor | 味道、风味 (taste) | This cheese has a strong, salty flavor.
+France | 法国 (a country in western Europe) | They spent their summer holiday in France.
+fuel | 燃料 (material that produces energy) | Fuel prices rose again this month.
+microscope | 显微镜 (tool for seeing tiny things) | Scientists watched the cells under a microscope.
+reference | ① 参考、查阅 (consulting) | Keep the dictionary for reference. | ② 推荐信 (letter of recommendation) | My former teacher wrote me a reference.
+vegetation | 植被、植物 (plant cover) | Dense vegetation covers the mountain slopes.
+vision | ① 视力 (sight) | The drug can damage your vision. | ② 愿景、眼光 (imagination of the future) | The founder's vision drove the company forward.
+robot | 机器人 (automatic machine) | Robots now work on many factory lines.
+electronic | 电子的 (using electronics) | Many electronic devices are made in Asia.
+whale | 鲸 (large sea mammal) | We saw a whale near the coast.
+basement | 地下室 (room below ground level) | The basement was cool and dark.
+fluid | ① 流体、液体 (liquid) | The doctor asked him to drink plenty of fluid. | ② 流畅的 (smooth and flowing) | Her movements were fluid and graceful.
+habitat | 栖息地 (natural home of an animal) | Pollution is destroying the birds' natural habitat.
+identification | ① 辨认、识别 (recognizing someone) | Eyewitness identification led to the arrest. | ② 身份证明 (official ID) | You need identification to open a bank account.
+information | 信息、资料 (facts, data) | The website gives information about local events.
+instrument | ① 乐器 (musical tool) | She plays two musical instruments. | ② 仪器、工具 (device) | The lab uses sensitive instruments to measure temperature.
+kidney | 肾脏 (an organ that cleans blood) | The kidney filters waste from the blood.
+machinery | 机器、机械 (machines) | The farm bought new machinery for harvesting.
+maintenance | 维护、保养 (keeping something working) | Regular maintenance keeps the system running.
+patience | 耐心 (calmness when waiting) | Learning a language takes patience and effort.
+power | ① 电力、电源 (energy supply) | The storm knocked out power across the region. | ② 力量、能力 (strength, ability) | The medicine gives you the power to fight the infection. | ③ 权力 (authority) | The mayor has the power to change the policy.
+protein | 蛋白质 (body-building nutrient) | Fish is a good source of protein.
+reception | ① 接待处 (front desk) | Ask for the key at reception. | ② 信号接收 (quality of a signal) | The reception on the mountain was very poor. | ③ 招待会 (formal gathering) | They held a wedding reception near the beach.
+scale | ① 规模 (size, level) | The project operates on a national scale. | ② 秤、刻度 (measuring device) | The scale showed a weight of seventy kilos.
+sculpture | 雕塑、雕刻 (three-dimensional art) | The museum owns a famous Roman sculpture.
+ship | ① 轮船 (large vessel) | The ship left the port at dawn. | ② 运送、发货 (send by transport) | We ship the goods worldwide.
+software | 软件 (computer programs) | The new software runs much faster.
+surface | ① 表面 (outer layer) | The surface of the lake was completely calm. | ② 浮出水面 (come up to the surface) | The fish surfaced for a moment.
+switch | ① 开关 (control device) | I could not find the light switch. | ② 转换、切换 (change to something else) | She switched from tea to coffee.
+textile | ① 纺织品 (woven cloth) | The factory exports textiles to Europe. | ② 纺织业 (the textile industry) | The town's textile industry is booming.
+timber | 木材 (wood for building) | Timber was once the main export of the region.
+tourism | 旅游业 (the travel industry) | Tourism brings a lot of income to the island.
+treatment | ① 治疗 (medical care) | The patient received treatment at once. | ② 对待、处理 (the way someone is dealt with) | The workers complained about unfair treatment.
+opportunity | 机会 (a good chance) | Education creates new opportunities for young people.
+starvation | 饥饿、饿死 (extreme hunger) | Thousands face starvation after the crop failure.
+fabric | 织物、布料 (cloth material) | The sofa is covered in a soft fabric.
+magnet | 磁铁 (metal that attracts iron) | The paper clip stuck to the magnet.
+petrol | 汽油 (fuel for cars) | The car uses a lot of petrol.
+rubber | ① 橡胶 (elastic material) | The boots are made of rubber. | ② 橡皮擦 (eraser) | Can I borrow your rubber?
+signature | 签名 (your name written by hand) | Please put your signature at the bottom.
+inscription | 铭文、题字 (words carved on something) | An ancient inscription was found on the wall.
+family | 家庭 (parents and children) | My family moved to Shanghai when I was five.
+museum | 博物馆 (building that shows exhibits) | The museum is free on Sundays.
+insect | 昆虫 (a small creature with six legs) | Insects are the most common animals on Earth.
+parking | 停车、停车位 (leaving a car somewhere) | Parking near the station is very expensive.
+supermarket | 超市 (a large self-service shop) | I buy fruit at the supermarket on my way home.
+desert | ① 沙漠 (dry, sandy land) | The desert gets almost no rain all year. | ② 抛弃 (abandon) | He deserted his friends when they needed help.
+animal | 动物 (a living creature) | The island is home to many wild animals.
+mountain | 山、山脉 (very high land) | They climbed the mountain before sunrise.
+helicopter | 直升机 (an aircraft with rotors) | A helicopter flew low over the beach.
+newspaper | 报纸 (printed news pages) | He reads the newspaper on the morning train.
+photograph | ① 照片 (a photo) | This is a photograph of my hometown. | ② 拍照 (take a photo) | She photographed the birds from a distance.
+flexible | ① 灵活的 (adaptable) | My working hours are flexible. | ② 可弯曲的 (bendable) | The tube is made of flexible plastic.
+safety | 安全 (freedom from harm) | Safety comes first in every laboratory.
+swimming | 游泳 (the sport of moving in water) | Swimming is great exercise for the whole body.
+driving | 驾驶、开车 (operating a vehicle) | Driving in heavy rain needs extra care.
+hospital | 医院 (a place where sick people are treated) | She was taken to hospital last night.
+kitchen | 厨房 (a room for cooking) | We had breakfast in the kitchen.
+manager | 经理 (a person in charge) | The manager will review your report tomorrow.
+training | 训练、培训 (teaching skills) | New staff receive two weeks of training.
+balcony | 阳台 (a platform on a building) | There is a small balcony outside the bedroom.
+fishing | 钓鱼、捕鱼 (catching fish) | Fishing is a popular weekend activity here.
+colour | 颜色 (a shade or hue) | Red is my favourite colour.
+children | 孩子、儿童 (plural of child) | Many children walk to school alone.
+expensive | 昂贵的 (costing a lot of money) | Living in the city centre is expensive.
+factory | 工厂 (a building where things are made) | The factory produces car parts.
+feedback | 反馈 (comments and reactions) | Your feedback helps us improve the course.
+garage | ① 车库 (a place for parking cars) | He left the car in the garage overnight. | ② 修车厂 (a place that repairs cars) | The garage fixed the engine in two hours.

@@ -1,0 +1,11 @@
+# 格式:单词 | 正确次数 | 错误次数
+example|1|0
+fluent|0|0
+memorize|0|0
+practice|0|0
+pronounce|0|0
+recall|0|0
+review|0|0
+sentence|1|0
+translate|1|0
+vocabulary|1|0

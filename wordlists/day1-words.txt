@@ -1,0 +1,107 @@
+# Day P4-01 (day1) 每日答案词表 — 释义+例句版
+# 格式:英文 <|> 释义①(中文 + 英文释义) <|> 例句① <|> 释义② <|> 例句② …
+
+water | ① 水 (water) | Remember to drink plenty of water in summer. | ② 浇水 (water plants, irrigate) | Please water the plants before you leave.
+transport | ① 交通、运输 (moving people and goods) | Many people use public transport to get to work. | ② 运送 (carry, convey) | Trucks transport goods across the country.
+business | ① 商业、生意 (commerce, trade) | He runs a small family business. | ② 公司 (company, firm) | She opened a coffee business downtown. | ③ 事务 (affairs) | That is none of your business.
+school | ① 学校 (place of learning) | The children walk to school every morning. | ② 上学、学业 (schooling) | She finished school at the age of eighteen.
+traffic | 交通、车流 (vehicles on a road) | Traffic in the city centre is very heavy at 7 a.m.
+certificate | 证书、证明 (official document) | You need a certificate to prove you passed the course.
+climate | ① 气候 (long-term weather) | The climate here is mild and wet in winter. | ② 氛围、环境 (atmosphere, conditions) | The company froze hiring in the current economic climate.
+environment | ① 环境 (surroundings) | We should do more to protect the environment. | ② 生活条件、氛围 (conditions around you) | Children learn best in a calm environment.
+interview | ① 面试 (job interview) | She has a job interview tomorrow morning. | ② 采访 (talk with a reporter) | The reporter interviewed the mayor about the new policy.
+pollution | 污染 (contamination) | Air pollution is a serious problem in big cities.
+population | 人口 (people living in an area) | The population of the city has grown quickly.
+communication | ① 交流、沟通 (exchanging information) | Good communication is important in any team. | ② 通讯 (means of sending messages) | Modern communication makes it easy to stay in touch.
+experience | ① 经验 (knowledge from doing something) | She has three years of teaching experience. | ② 经历、体验 (something lived through) | The trip was an unforgettable experience.
+food | 食物 (things people eat) | Fresh food is better for your health.
+market | ① 市场 (place to buy and sell) | They sell vegetables at the local market. | ② 行情、销路 (demand for a product) | The market for electric cars is growing fast.
+migration | ① 迁徙、迁移 (movement of animals) | Birds make a long migration south each winter. | ② 移民 (moving to live elsewhere) | The report studies migration from rural areas to cities.
+negative | ① 消极的 (pessimistic) | Too much negative news can make people anxious. | ② 否定的 (denying) | She gave a negative answer to my question.
+social | ① 社会的 (relating to society) | Social skills matter as much as knowledge at work. | ② 社交的 (involving friends and groups) | She has a busy social life.
+material | ① 材料、原料 (substance used to make things) | The jacket is made of waterproof material. | ② 物质的 (physical, not spiritual) | Good education is not just about material wealth.
+conference | 会议、研讨会 (formal meeting) | He is presenting a paper at an international conference.
+chemical | ① 化学物质 (chemical substance) | Some chemicals are harmful to rivers. | ② 化学的 (relating to chemistry) | The factory releases chemical waste into the air.
+university | 大学 (institution of higher education) | She studied biology at university.
+interaction | 相互作用、互动 (acting together) | Regular interaction with classmates improves learning.
+quality | ① 质量 (how good something is) | The school aims to improve the quality of teaching. | ② 素质、品质 (good trait) | Honesty is an important quality for a leader.
+risk | ① 风险 (chance of danger) | Smoking increases the risk of heart disease. | ② 冒险 (take a chance) | He risked losing everything to start the company.
+technology | 技术、科技 (applied science) | Modern technology has changed the way we learn.
+traditional | 传统的 (following old customs) | Traditional festivals are still celebrated across China.
+transportation | 交通运输、运输工具 (moving people and goods) | The city spends a lot on public transportation.
+energy | ① 能源 (source of power) | Solar energy is becoming cheaper every year. | ② 精力、能量 (vitality) | Exercise gives you more energy during the day.
+engineering | 工程、工程学 (design and building of structures) | She chose civil engineering as her major.
+estimate | ① v.估计、估算 (guess roughly) | Experts estimate the building will cost two million. | ② n.估价 (rough calculation) | The repair estimate came to 500 dollars.
+expectation | 期望、预期 (what you expect) | The results exceeded our expectations.
+flooding | 洪水、水灾 (overflow of water) | Heavy rain caused serious flooding in the south.
+freedom | 自由 (liberty) | People gathered to celebrate their freedom.
+frequency | 频率、次数 (how often something happens) | The frequency of earthquakes increased last month.
+gender | 性别 (male or female sex) | The report looks at differences in pay by gender.
+job | 工作、职业 (paid work) | Finding a full-time job is not easy this year.
+obligation | 义务、责任 (duty) | Every citizen has an obligation to pay taxes.
+packaging | 包装、包装材料 (wrapping material) | The packaging should be recyclable.
+pattern | ① 模式、规律 (repeated way) | Researchers found a clear pattern in the results. | ② 图案 (design) | The shirt has a blue and white pattern.
+poverty | 贫困 (extreme poorness) | The charity works with families living in poverty.
+protection | 保护 (keeping something safe) | The new law gives stronger protection to wildlife.
+reason | 原因、理由 (cause, explanation) | Can you give me a reason for the delay?
+recording | 录音、录像 (captured sound or image) | We made a recording of the lecture.
+reliable | 可靠的 (trustworthy) | Public transport here is fast and reliable.
+science | 科学 (systematic knowledge) | Science helps us understand the natural world.
+shipping | ① 航运、运输 (movement of goods) | The company handles shipping to more than 50 countries. | ② 发货 (sending goods) | Shipping costs depend on the weight of the parcel.
+stress | ① 压力 (mental pressure) | Exam stress can affect students' sleep. | ② 强调 (emphasize) | Teachers stress the importance of daily revision.
+survey | ① 调查 (poll, questionnaire) | The survey shows most people support the plan. | ② 测量 (examining land) | Engineers carried out a survey of the coastline.
+trade | ① 贸易 (commerce) | Trade between the two countries has doubled. | ② 交换、交易 (exchange) | The two villages traded grain for fish.
+resource | 资源 (things available to use) | Water is a precious resource in dry areas.
+benefit | ① 好处、益处 (advantage) | Regular exercise has many health benefits. | ② 受益 (gain from) | Students benefit from smaller classes.
+behaviour | 行为、举止 (way of acting) | Her behaviour in class improved after the talk.
+economy | ① 经济 (system of trade and industry) | Tourism is important to the local economy. | ② 节约、节省 (careful use) | The new engine offers good fuel economy.
+culture | ① 文化 (customs and beliefs) | Learning a language means learning its culture. | ② 修养 (cultural refinement) | He is a man of culture and learning.
+agriculture | 农业 (farming) | Most people in the region work in agriculture.
+genetic | 基因的、遗传的 (relating to genes) | Genetic testing can identify some diseases early.
+immune | ① 免疫的 (protected from disease) | A healthy diet strengthens your immune system. | ② 不受影响的 (unaffected) | The market is not immune to interest rate changes.
+income | 收入 (money earned) | Household income has risen in the past decade.
+industry | ① 工业、产业 (manufacturing sector) | The car industry provides many local jobs. | ② 勤奋 (diligence) | Success came from years of industry and patience.
+journalism | 新闻业、新闻学 (the profession of reporting news) | She studied journalism at university.
+laboratory | 实验室 (place for experiments) | The samples were tested in a laboratory.
+learning | 学习 (acquiring knowledge and skills) | Online learning is now widely used in schools.
+mapping | 绘图、制图 (making maps) | The team does detailed mapping of the ocean floor.
+sediment | 沉积物、泥沙 (matter that settles) | Sediment fills the river when it rains heavily.
+survival | 生存、存活 (continuing to live) | Clean water is essential for survival in the desert.
+reduction | 减少、降低 (making something less) | The plan aims at a reduction in carbon emissions.
+efficient | 高效的 (working well without waste) | New lighting is more efficient and saves energy.
+modern | 现代的 (of the present time) | The museum combines modern design with old exhibits.
+building | ① 建筑物 (structure) | The building was completed ahead of schedule. | ② 建造 (construction) | The city is building a new bridge over the river.
+college | 学院、大学 (institution of further education) | She is in her second year at college.
+commercial | ① 商业的 (relating to business) | The building is used for commercial purposes. | ② 商业广告 (television advertisement) | The bank ran a new commercial during the match.
+complex | ① 复杂的 (hard to understand) | This is a complex problem with no easy answer. | ② n.综合体 (a group of buildings) | The new sports complex opens next month.
+computing | 计算、计算机技术 (using computers) | He has good computing skills from a young age.
+conservation | ① 保护 (preservation) | Wildlife conservation is one of our main goals. | ② 节约、节能 (careful use of resources) | The campaign promotes energy conservation at home.
+contract | ① 合同 (formal agreement) | Both sides signed the contract yesterday. | ② 收缩 (become smaller) | Metal contracts as it cools down.
+declining | ① 下降的、减少的 (decreasing) | The region faces a declining population. | ② 衰退的 (weakening) | Sales have been declining for three months.
+depression | ① 抑郁、沮丧 (deep sadness) | After the accident she suffered from depression. | ② 经济萧条 (economic slump) | The 1930s saw a deep economic depression.
+economic | 经济的 (relating to the economy) | The country faces serious economic challenges.
+efficiency | 效率、效能 (working well) | The new system improves efficiency in the office.
+electrical | 电的、电气的 (relating to electricity) | We need an electrical engineer for the project.
+health | 健康 (good physical condition) | Smoking is bad for your health.
+mobility | 流动性、移动能力 (ability to move easily) | Impaired mobility makes daily life harder.
+organic | ① 有机的 (grown without chemicals) | Organic vegetables are grown without chemicals. | ② 器官的 (relating to organs) | The disease affects the body's organic tissues.
+participation | 参与、参加 (taking part) | Participation in sports improves team spirit.
+process | ① 过程、进程 (series of steps) | Applying for a visa is a long process. | ② 加工、处理 (handle, treat) | The factory processes wheat into flour.
+profit | ① 利润、收益 (money gained) | The company made a small profit last year. | ② 获益 (gain from) | You will profit from reading more widely.
+purpose | ① 目的 (goal, aim) | The main purpose of the course is to improve writing. | ② 用途 (use) | This tool has many purposes.
+qualification | 资格、学历 (formal credential) | A teaching qualification is required for the job.
+reaction | ① 反应 (response) | Her reaction to the news was surprisingly calm. | ② 化学反应 (chemical change) | Mixing the two liquids causes a chemical reaction.
+scientific | 科学的 (relating to science) | The theory is based on scientific evidence.
+security | ① 安全 (safety) | Airport security checks take time but keep us safe. | ② 保安人员 (security guards) | Two security guards stood by the entrance.
+solution | ① 解决方案 (answer to a problem) | Scientists are looking for a solution to the problem. | ② 溶液 (liquid mixture) | A salt solution can clean the wound.
+threat | 威胁 (danger, menace) | Climate change is a serious threat to wildlife.
+trend | 趋势、动向 (general direction) | There is a clear trend towards working from home.
+variable | ① n.变量 (a changeable factor) | The experiment controls for every variable. | ② 多变的 (changeable) | The weather here is highly variable.
+impact | ① 影响 (effect) | The new airport had a big impact on the local economy. | ② 撞击、冲击 (striking force) | The impact of the crash broke the window.
+insurance | 保险 (financial protection) | Car insurance can be expensive for young drivers.
+light | ① 光、光线 (brightness) | Turn off the light when you leave. | ② 灯 (lamp) | A street light shines outside the window. | ③ 轻的 (not heavy) | The box is light enough to carry.
+forest | 森林 (large area of trees) | The fire destroyed large areas of forest.
+temperature | 温度 (how hot or cold something is) | The temperature drops sharply at night.
+weather | 天气 (atmospheric conditions) | The weather was fine for the whole trip.
+wood | ① 木头、木材 (timber) | The house is built mainly of wood. | ② 树林 (a small forest) | They walked through the wood behind the farm.
+depth | ① 深度 (distance from top to bottom) | The depth of the lake reaches over fifty metres. | ② 深度、深刻 (complexity) | The book shows great depth of analysis.
