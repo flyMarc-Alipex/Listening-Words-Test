@@ -24,6 +24,7 @@ import time
 from pathlib import Path
 
 import tkinter as tk
+import tkinter.ttk as ttk
 
 APP_DIR = Path(__file__).resolve().parent
 WORDS_DIR = APP_DIR / "wordlists"   # 词表文件
@@ -986,6 +987,23 @@ class WordCard:
         except tk.TclError:
             pass
 
+    def _tree_style(self, parent):
+        """给统计表格用的 Treeview 深色样式(尽量用 clam 主题;不可用时退回默认)。"""
+        try:
+            style = ttk.Style(parent)
+            if "clam" in style.theme_names():
+                style.theme_use("clam")
+            style.configure("Treeview", background=CARD, fieldbackground=CARD,
+                            foreground=TEXT, rowheight=24, borderwidth=0)
+            style.configure("Treeview.Heading", background=BTNBG, foreground=BTNTEXT,
+                            relief="flat", font=("Helvetica", 10))
+            style.map("Treeview",
+                      background=[("selected", ACCENT)],
+                      foreground=[("selected", "#ffffff")])
+        except tk.TclError:
+            pass
+        return style
+
     def open_simple_stats(self):
         """简单统计:所选词表中错误次数最高的 30 个单词。"""
         win = tk.Toplevel(self.root)
@@ -1002,21 +1020,25 @@ class WordCard:
         tk.Label(top, text="词表:", bg=BG, fg=TEXT, font=("Helvetica", 10)).pack(side="left")
         tk.OptionMenu(top, var, *[p.name for p in self.lists]).pack(side="left", padx=6)
 
-        lb = tk.Listbox(win, font=("Helvetica", 11), bg=CARD, fg=TEXT,
-                        selectbackground=ACCENT, activestyle="none")
-        lb.pack(fill="both", expand=True, padx=10, pady=8)
+        self._tree_style(win)
+        tree = ttk.Treeview(win, columns=("word", "e", "c"), show="headings")
+        for col, label, w, anchor in (("word", "单词", 230, "w"),
+                                      ("e", "错", 60, "e"),
+                                      ("c", "对", 60, "e")):
+            tree.heading(col, text=label, anchor=anchor)
+            tree.column(col, width=w, anchor=anchor, stretch=False)
+        tree.pack(fill="both", expand=True, padx=10, pady=8)
 
         def refresh(*_):
-            lb.delete(0, "end")
+            for i in tree.get_children():
+                tree.delete(i)
             wf = self._find_list(var.get())
             if not wf:
                 return
             stats = load_stats(stats_path_for(wf))
             rows = sorted(stats.items(), key=lambda kv: (-kv[1][1], kv[1][0]))[:30]
-            if not rows:
-                lb.insert("end", "(该词表还没有任何错误记录)")
             for w, (c, e) in rows:
-                lb.insert("end", f"{w:<20}  错 {e:>3}  对 {c:>3}")
+                tree.insert("", "end", values=(w, e, c))
         var.trace_add("write", refresh)
 
         btns = tk.Frame(win, bg=BG)
@@ -1029,7 +1051,7 @@ class WordCard:
         """详细词表统计:每词正确/错误次数与正确率/错误率,可手动标记/移除已学会。"""
         win = tk.Toplevel(self.root)
         win.title("详细词表统计")
-        win.geometry("500x520")
+        win.geometry("560x520")
         win.configure(bg=BG)
         self._situate(win)
         self._present(win)
@@ -1041,16 +1063,25 @@ class WordCard:
         tk.Label(top, text="词表:", bg=BG, fg=TEXT, font=("Helvetica", 10)).pack(side="left")
         tk.OptionMenu(top, var, *[p.name for p in self.lists]).pack(side="left", padx=6)
 
-        lb = tk.Listbox(win, font=("Helvetica", 10), bg=CARD, fg=TEXT,
-                        selectbackground=ACCENT, activestyle="none",
-                        selectmode="multiple")
-        lb.pack(fill="both", expand=True, padx=10, pady=8)
+        self._tree_style(win)
+        tree = ttk.Treeview(win, columns=("word", "c", "e", "cr", "er", "status"),
+                            show="headings", selectmode="extended")
+        for col, label, w, anchor in (("word", "单词", 180, "w"),
+                                      ("c", "对", 60, "e"),
+                                      ("e", "错", 60, "e"),
+                                      ("cr", "正率", 70, "e"),
+                                      ("er", "错率", 70, "e"),
+                                      ("status", "状态", 90, "w")):
+            tree.heading(col, text=label, anchor=anchor)
+            tree.column(col, width=w, anchor=anchor, stretch=False)
+        tree.pack(fill="both", expand=True, padx=10, pady=8)
 
         def current_file():
             return self._find_list(var.get())
 
         def refresh(*_):
-            lb.delete(0, "end")
+            for i in tree.get_children():
+                tree.delete(i)
             wf = current_file()
             if not wf:
                 return
@@ -1062,17 +1093,20 @@ class WordCard:
                 cr = round(c * 100 / tot) if tot else 0
                 er = round(e * 100 / tot) if tot else 0
                 status = "已学会" if word in learned else "学习中"
-                lb.insert("end", f"{word:<18} 对{c:>4} 错{e:>4} 正率{cr:>3}% 错率{er:>3}%  {status}")
+                tree.insert("", "end", values=(word, c, e, f"{cr}%", f"{er}%", status))
         var.trace_add("write", refresh)
 
         def selected_words():
-            sel = lb.curselection()
-            if not sel:
+            wf = current_file()
+            if not wf:
                 return []
-            return [lb.get(i).split()[0] for i in sel]
+            valid = {word for word, _ in load_words(wf)}
+            return [tree.item(i, "values")[0] for i in tree.selection()
+                    if tree.item(i, "values")[0] in valid]
 
         def select_all():
-            lb.selection_set(0, "end")
+            for i in tree.get_children():
+                tree.selection_add(i)
 
         def mark_learned():
             words = selected_words()
