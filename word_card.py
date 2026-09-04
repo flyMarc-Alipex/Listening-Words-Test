@@ -12,7 +12,7 @@ WordCard — 悬浮单词助记卡 (tkinter, 离线, 跨平台)
     每行一条:英文单词 <Tab> 或 <|> 或 <两个空格> 释义(多义词为 释义①|例句①|释义②|例句②…)。
 
 快捷键: 空格=翻面  ←=上一个  →=下一个  R=随机  S=记正确(只读模式)
-底部滑块切换「读写 / 听写」:听写模式播放语音、输入拼写,拼对记正确、拼错/超时记错误。
+底部分段控制器切换「读写 / 听写」:听写模式播放语音、输入拼写,拼对记正确、拼错/超时记错误。
 """
 import os
 import random
@@ -229,7 +229,7 @@ class WordCard:
         self.list_var = tk.IntVar(value=self.list_index)
         self._stats_open = 0  # 打开的统计窗口数量
         self.mode = "read"    # read = 读写模式, dict = 听写模式
-        self.mode_scale = None
+        self.mode_control = None
         self.timer_id = None
         self.time_left = 5
         self._pending = None
@@ -247,10 +247,12 @@ class WordCard:
         self.root.geometry("430x255")
         self.root.configure(bg=BG)
         self.root.resizable(False, False)
-        self._topmost = True
+        self._topmost = False  # 默认普通窗口,不再始终置顶
         self._alpha = 1.0  # 默认不透明;老版 Tk 的透明窗口容易整块白屏
+        self.top_var = tk.BooleanVar(value=self._topmost)
         try:
-            self.root.attributes("-topmost", True)
+            if self._topmost:
+                self.root.attributes("-topmost", True)
             if self._alpha < 1.0:
                 self.root.attributes("-alpha", self._alpha)
         except tk.TclError:
@@ -349,16 +351,12 @@ class WordCard:
                           ("已会", self.learn), ("不会", self.forget)]:
             self._make_button(btns, text, cmd)
 
-        # 读写 / 听写 模式切换滑块
-        mode_frame = tk.Frame(self.root, bg=BG)
-        tk.Label(mode_frame, text="读写", font=("Helvetica", 9), bg=BG, fg=SUB).pack(side="left")
-        self.mode_scale = tk.Scale(mode_frame, from_=0, to=1, orient="horizontal", length=90,
-                                   showvalue=False, command=self._mode_cmd, bg=BG, fg=TEXT,
-                                   troughcolor=LINE, highlightthickness=0, bd=0)
-        self.mode_scale.set(0)
-        self.mode_scale.pack(side="left", padx=4)
-        tk.Label(mode_frame, text="听写", font=("Helvetica", 9), bg=BG, fg=SUB).pack(side="left")
-        mode_frame.pack(pady=(0, 6))
+        # 读写 / 听写 模式切换(iOS 风格分段控制器)
+        self.mode_control = self._build_mode_switch()
+        self.mode_control.pack(pady=(0, 8))
+
+        # 右上角「钉子」小按键(place 叠放,不参与 pack 布局,不影响其他控件位置)
+        self._make_pin_button()
 
     def _make_button(self, parent, text, command):
         """macOS 原生 tk.Button 忽略 bg/fg,改用 Label 自制按钮主题。
@@ -370,6 +368,51 @@ class WordCard:
         btn.bind("<ButtonRelease-1>",
                  lambda e, b=btn, c=command: (b.configure(bg=BTNBG), self._safe(c))[1])
         return btn
+
+    def _round_rect(self, seg, x1, y1, x2, y2, r, **kw):
+        """在 Canvas 上画圆角矩形(平滑多边形技巧)。"""
+        pts = [x1 + r, y1, x2 - r, y1, x2, y1, x2, y1 + r, x2, y2 - r, x2, y2,
+               x2 - r, y2, x1 + r, y2, x1, y2, x1, y2 - r, x1, y1 + r, x1, y1]
+        return seg.create_polygon(pts, smooth=True, **kw)
+
+    def _build_mode_switch(self):
+        """iOS 风格分段控制器(读写 | 听写)。用 Canvas 画圆角,
+        避免 macOS 原生控件无视配色,同时省掉原来的 tk.Scale。"""
+        W, H, pad = 168, 30, 3
+        seg = tk.Canvas(self.root, width=W, height=H, bg=BG, highlightthickness=0)
+        half = (W - pad * 2) / 2
+        self._mode_seg_boxes = [
+            (pad, pad, pad + half, H - pad, "读写"),
+            (pad + half, pad, W - pad, H - pad, "听写"),
+        ]
+        self._mode_canvas = seg
+        self._mode_draw(0)
+        # 在 release 时触发,避免失活的置顶窗口吞掉第一次“按下”事件
+        seg.bind("<ButtonRelease-1>", self._mode_click)
+        return seg
+
+    def _mode_click(self, event):
+        for i, (x0, y0, x1, y1, _label) in enumerate(self._mode_seg_boxes):
+            if x0 <= event.x <= x1 and y0 <= event.y <= y1:
+                self._set_mode("dict" if i == 1 else "read")
+                return
+
+    def _mode_draw(self, active):
+        """重画分段控制器,active=0 读写 / 1 听写。"""
+        seg = self._mode_canvas
+        seg.delete("all")
+        H = int(seg["height"])
+        W = int(seg["width"])
+        self._round_rect(seg, 1, 1, W - 1, H - 1, H / 2, fill=LINE, outline="")
+        for i, (x0, y0, x1, y1, label) in enumerate(self._mode_seg_boxes):
+            if i == active:
+                self._round_rect(seg, x0, y0, x1, y1, (y1 - y0) / 2,
+                                 fill=ACCENT, outline="")
+                fg, font = "#ffffff", ("Helvetica", 12, "bold")
+            else:
+                fg, font = SUB, ("Helvetica", 12)
+            seg.create_text((x0 + x1) / 2, (y0 + y1) / 2, text=label,
+                            fill=fg, font=font)
 
     def _safe(self, fn):
         """执行按钮命令;出错时弹窗提示并写入日志,避免按钮点了没反应。"""
@@ -392,7 +435,7 @@ class WordCard:
 
     def _build_menu(self):
         self.menu = tk.Menu(self.root, tearoff=0)
-        self.menu.add_checkbutton(label="窗口置顶", command=self.toggle_top)
+        self.menu.add_checkbutton(label="窗口置顶", variable=self.top_var, command=self.toggle_top)
         alpha_menu = tk.Menu(self.menu, tearoff=0)
         for pct in (100, 85, 70, 55):
             alpha_menu.add_radiobutton(label=f"{pct}%",
@@ -534,13 +577,6 @@ class WordCard:
         self.show()
 
     # ---------- 听写模式 ----------
-    def _mode_cmd(self, value):
-        try:
-            mode = "dict" if int(round(float(value))) == 1 else "read"
-        except (TypeError, ValueError):
-            mode = "read"
-        self._set_mode(mode)
-
     def _set_mode(self, mode):
         if mode == self.mode:
             return
@@ -557,16 +593,16 @@ class WordCard:
             self.paused = False
             if self.pause_btn is not None:
                 self.pause_btn.configure(text="暂停")
-            if self.mode_scale is not None:
-                self.mode_scale.set(1)
+            if self.mode_control is not None:
+                self._mode_draw(1)
         else:
             self.dict_box.pack_forget()
             self.word_lbl.pack(pady=(16, 6))
             self.meaning_lbl.pack(pady=(0, 4))
             self.example_lbl.pack(pady=(0, 14))
             self.paused = False
-            if self.mode_scale is not None:
-                self.mode_scale.set(0)
+            if self.mode_control is not None:
+                self._mode_draw(0)
         self.show()
 
     def _setup_dict(self, w, m):
@@ -817,8 +853,40 @@ class WordCard:
 
     # ---------- 窗口控制 ----------
     def toggle_top(self):
+        """切换 普通窗口 / 始终置顶;同步菜单勾选与右上角钉子状态。"""
         self._topmost = not self._topmost
-        self.root.attributes("-topmost", self._topmost)
+        try:
+            self.root.attributes("-topmost", self._topmost)
+        except tk.TclError:
+            pass
+        self.top_var.set(self._topmost)
+        self._draw_pin()
+
+    def _make_pin_button(self):
+        """右上角正方形「图钉」小按键:点击切换 普通窗口/始终置顶。
+        用 place() 叠放在状态栏同一行,不影响其他控件的 pack 布局。"""
+        s = 24
+        seg = tk.Canvas(self.root, width=s, height=s, bg=BG, highlightthickness=0,
+                        cursor="hand2")
+        seg.place(x=430 - s - 8, y=3)  # 窗口固定 430 宽,贴右上角,与状态栏同高
+        seg.bind("<ButtonRelease-1>", lambda e: self.toggle_top())
+        self.pin_canvas = seg
+        self._draw_pin()
+
+    def _draw_pin(self):
+        """重绘右上角「图钉」:正方形底 + 钉帽圆 + 针。
+        置顶时按钮变蓝、钉子变白;普通时灰钉。"""
+        seg = getattr(self, "pin_canvas", None)
+        if seg is None:
+            return
+        seg.delete("all")
+        s = 24
+        on = self._topmost
+        bgc = ACCENT if on else BTNBG
+        pin = "#ffffff" if on else SUB
+        seg.create_rectangle(2, 2, s - 2, s - 2, fill=bgc, outline=LINE, width=1)
+        seg.create_oval(8, 5, 16, 13, fill=pin, outline="")   # 钉帽
+        seg.create_line(12, 13, 12, 19, fill=pin, width=2)     # 针
 
     def set_alpha(self, pct):
         self._alpha = pct / 100
@@ -888,8 +956,8 @@ class WordCard:
 
     def _present(self, win):
         """把统计窗口提到主窗口前方并抢走焦点。
-        主窗口默认始终置顶,会盖住任何新窗口;这里在统计窗口打开时
-        临时关掉主窗口置顶,让统计窗口真正压到前面,关掉后再恢复。"""
+        主窗口若处于始终置顶状态会盖住任何新窗口;这里在统计窗口打开时
+        临时关掉主窗口置顶,让统计窗口真正压到前面,关掉后再按其状态恢复。"""
         try:
             win.transient(self.root)
             win.attributes("-topmost", True)
@@ -903,11 +971,11 @@ class WordCard:
             pass
 
     def _on_stats_closed(self, win):
-        """统计窗口收起后:恢复主窗口置顶并归还焦点。"""
+        """统计窗口收起后:恢复主窗口置顶状态(按其当前状态)并归还焦点。"""
         try:
             self._stats_open = max(0, self._stats_open - 1)
             if self._stats_open == 0:
-                self.root.attributes("-topmost", True)
+                self.root.attributes("-topmost", self._topmost)
             self._refocus_main()
         except tk.TclError:
             pass

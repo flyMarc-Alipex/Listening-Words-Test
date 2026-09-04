@@ -11,7 +11,7 @@ college|0|0
 commercial|0|0
 communication|0|0
 complex|0|0
-computing|1|0
+computing|2|0
 conference|1|0
 conservation|0|0
 contract|0|0
@@ -27,7 +27,7 @@ electrical|0|0
 energy|0|0
 engineering|0|0
 environment|0|0
-estimate|0|0
+estimate|0|1
 expectation|0|0
 experience|0|0
 flooding|1|0
@@ -49,10 +49,10 @@ job|0|0
 journalism|0|0
 laboratory|0|0
 learning|0|0
-light|0|0
+light|1|0
 mapping|0|0
 market|1|0
-material|1|0
+material|1|1
 migration|1|0
 mobility|0|0
 modern|1|0
@@ -66,12 +66,12 @@ pollution|0|0
 population|0|0
 poverty|0|0
 process|0|0
-profit|0|0
+profit|1|0
 protection|0|0
 purpose|0|0
-qualification|1|0
+qualification|1|1
 quality|0|0
-reaction|0|0
+reaction|1|0
 reason|0|0
 recording|0|0
 reduction|0|0
@@ -100,6 +100,6 @@ transportation|1|0
 trend|0|0
 university|0|0
 variable|0|0
-water|0|0
+water|1|0
 weather|0|0
 wood|0|0
